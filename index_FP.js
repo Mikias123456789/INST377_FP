@@ -10,9 +10,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const supabaseUrl = 'https://xyxlsqsbmzytcddwnuta.supabase.co';
-const supabaseKey = 'sb_publishable_gI4dEnK6yyxLdG3XsMAORA_wLKIoW0l';
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
+
+app.get('/', (req, res) => {
+  res.sendFile('public/Home_Page_FP.html', { root: __dirname });
+});
 
 app.get('/cities', async (req, res) => {
   const { data, error } = await supabase.from('cities').select();
