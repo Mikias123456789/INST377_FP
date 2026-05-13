@@ -1,0 +1,137 @@
+<html>
+<head>
+    <title>About</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-color: lightblue;
+        }
+
+        .header {
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #b0b0b0;
+            padding: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        nav li:hover {
+            background-color: lightblue;
+        }
+
+        .title {
+            font-size: 28px;
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-box {
+            margin: 20px;
+            padding: 15px;
+            background: white;
+            border: 2px solid black;
+            width: 500px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e8449;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #145a32;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">Weather Application</div>
+
+<nav>
+    <ul>
+        <li onclick="goPage('Test2_Home_Page_FP.html')">Home</li>
+        <li onclick="goPage('Test2_About_Page_FP.html')">About</li>
+        <li onclick="goPage('Test2_Weather_Page_FP.html')">Weather</li>
+    </ul>
+</nav>
+
+<div class="title">About This Project</div>
+
+<div class="box-container">
+
+<div class="section-box">
+    <h3>What this app does</h3>
+    <p>
+        This weather application helps users view real-time weather data in a simple and easy to understand format.
+        It pulls weather information from a backend API and displays it in a user-friendly dashboard.
+    </p>
+</div>
+
+<div class="section-box">
+    <h3>Who it is for</h3>
+    <p>
+        This application is designed for students, commuters, travelers, and anyone who needs quick and clear weather updates.
+    </p>
+</div>
+
+<div class="section-box">
+    <h3>Data Source</h3>
+    <p>
+        The backend connects to the Open-Meteo Weather API and also stores location data using Supabase.
+    </p>
+</div>
+
+<div class="section-box">
+    <h3>Why it matters</h3>
+    <p>
+        Weather information is often complex. This project simplifies it by processing data through a backend server before displaying it.
+    </p>
+</div>
+
+</div>
+
+<button class="button" onclick="goPage('Test2_Weather_Page_FP.html')">
+    Go to Weather Page
+</button>
+
+<script>
+function goPage(page) {
+    window.location.href = page;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<html>
+<head>
+    <title>Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-color: lightblue;
+        }
+
+        .header {
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #b0b0b0;
+            padding: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        nav li:hover {
+            background-color: lightblue;
+        }
+
+        .title {
+            font-size: 28px;
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        .content {
+            margin: 20px;
+            font-size: 16px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e8449;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #145a32;
+        }
+
+        .weather-box {
+            margin: 20px;
+            padding: 15px;
+            background: white;
+            border: 2px solid black;
+            width: 350px;
+            height: 175px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">Weather Application</div>
+
+<nav>
+    <ul>
+        <li onclick="goPage('Test2_Home_Page_FP.html')">Home</li>
+        <li onclick="goPage('Test2_About_Page_FP.html')">About</li>
+        <li onclick="goPage('Test2_Weather_Page_FP.html')">Weather</li>
+    </ul>
+</nav>
+
+<div class="title">Welcome to the Weather Dashboard</div>
+
+<div class="content">
+    This application helps users easily view and understand weather data.
+    You can search for a location and view current weather conditions and trends.
+</div>
+
+<div class="weather-box">
+    <h3>Current Weather (Preview)</h3>
+    <p id="weather">Loading...</p>
+</div>
+
+<button class="button" onclick="goPage('Test2_Weather_Page_FP.html')">
+    Go to Weather Page
+</button>
+
+<script>
+function goPage(page) {
+    window.location.href = page;
+}
+
+function getCondition(code) {
+    if (code === 0) return "Clear";
+    if (code <= 3) return "Cloudy";
+    if (code >= 45 && code <= 48) return "Fog";
+    if (code >= 51 && code <= 67) return "Rain";
+    if (code >= 71 && code <= 77) return "Snow";
+    if (code >= 80 && code <= 99) return "Showers/Storms";
+    return "Unknown";
+}
+
+fetch(`${window.location.origin}/weather?lat=38.98&lon=-76.94`)
+    .then(res => res.json())
+    .then(data => {
+        const w = data.current_weather;
+
+        const tempC = w.temperature;
+        const tempF = (tempC * 9/5) + 32;
+
+        document.getElementById("weather").innerHTML =
+            "Temp: " + tempF.toFixed(1) + "°F / " + tempC + "°C<br>" +
+            "Condition: " + getCondition(w.weathercode) + "<br>" +
+            "Wind: " + w.windspeed + " km/h<br>" +
+            "Direction: " + w.winddirection + "°";
+    })
+    .catch(() => {
+        document.getElementById("weather").innerHTML = "Weather data unavailable";
+    });
+</script>
+
+</body>
+</html>
